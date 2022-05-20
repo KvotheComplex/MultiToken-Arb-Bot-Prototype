@@ -33,8 +33,8 @@ let wallet = new ethers.Wallet(private, provider)
 
 let pancakeRouter = new ethers.Contract(pancakeSwapRouterAddress, uniswapRouterABI, provider)
 let pancakeFactory = new ethers.Contract(pancakeSwapFactoryAddress, uniswapFactoryABI, provider)
-let apeRouter = new ethers.Contract(MDEXRouterAddress, uniswapRouterABI, provider)
-let apeFactory = new ethers.Contract(MDEXFactoryAddress, uniswapFactoryABI, provider)
+let mdexRouter = new ethers.Contract(MDEXRouterAddress, uniswapRouterABI, provider)
+let mdexFactory = new ethers.Contract(MDEXFactoryAddress, uniswapFactoryABI, provider)
 
 let arbContract = new ethers.Contract(arbAddress, arbABI, wallet)
 
@@ -43,7 +43,7 @@ let executing = false
 
 async function getAmountOutBS(token0, token1,amount){
     try{
-        let res = await apeRouter.getAmountsOut(ethers.utils.parseEther(amount),[token0, token1])
+        let res = await mdexRouter.getAmountsOut(ethers.utils.parseEther(amount),[token0, token1])
         // console.log(res)
         let formatted  = ethers.utils.formatEther(res[1].toString())
         // console.log(formatted)
